@@ -1,8 +1,4 @@
-User-agent: Mediapartners-Google
+User-agent: *
 Disallow: 
 
-User-agent: *
-Disallow: /search
-Allow: /
-
-Sitemap: https://error.web.id/sitemap.xml
+Sitemap: http://error.web.id/sitemap.xml 
