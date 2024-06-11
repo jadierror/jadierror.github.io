@@ -15,35 +15,14 @@
     <script src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous'></script>
     </head>
     <body>
-<script>
-var numposts = 1000;
- 
-function listPost(json) {
-document.write('<ul>');
-for (var i = 0; i < numposts; i++) {
-    document.write('<li class="list-post">');
-    var entry = json.feed.entry[i];
-    var posttitle = entry.title.$t;
-    var posturl;
-    if (i == json.feed.entry.length) break;
-        for (var k = 0; k < entry.link.length; k++) {
-            if (entry.link[k].rel == 'alternate') {
-                posturl = entry.link[k].href;
-                posttitle = posttitle.link(posturl);
-            }
-        }
-        document.write(posttitle);
-        ('</li>');
-    }
-    ('</ul>');
-}
-</script>
-<script src="https://blog.error.web.idfeeds/posts/summary?redirect=false&amp;start-index=1&amp;max-results=1000&amp;orderby=published&amp;alt=json-in-script&amp;callback=listPost"></script>
 <style>
-    .list-post{
-        list-style: circle;
-        border-bottom: solid 1px #ccc
-    }
+#w-sitemap-wrapper {font-size:13px}
+#w-sitemap-wrapper li {position:relative;padding:.385em 0 .385em 6.923em;border-top:none;border-bottom:1px solid #f6f6f6}
+#w-sitemap-wrapper span {position:absolute;left:0;color:#bd8b56}
+#w-sitemap-wrapper a {font-weight:bold}
+#w-sitemap-loading-msg {height:100px;line-height:100px;text-align:center;font-weight:bold;letter-spacing:1px;font-size:18px;color:#bbbbbb}
 </style>
+<script>
+(function(c,m){var h=window;var l=document;var e="w-sitemap-wrapper";var g="w-sitemap-loading-msg";var b=h.location;var n=b.protocol;var f=b.hostname;var k=0;l.write("<div id='"+e+"'><ol></ol><div id='"+g+"'>"+m+"</div></div>");var a=l.getElementById(e);var d=l.getElementById(g);var j=l.getElementById(e).getElementsByTagName("ol")[0];function i(o){var p=l.createElement("script");p.src=n+"//"+f+"blog.eeror.web.id/feeds/posts/summary?alt=json-in-script&callback=wijs_get_sitemap&start-index="+o+"&max-results=150";a.appendChild(p)}h.wijs_get_sitemap=function(E){var A=E.feed.entry;var u=parseInt(E.feed.openSearch$totalResults.$t);var x=A.length;var w="";for(var s=0;s<x;s++){var o=A[s];var C=o.title.$t;var p;var D=o.link;var y=D.length;for(var r=0;r<y;r++){if(D[r].rel==="alternate"){p=D[r].href;break}}var z=o.published.$t;var q=z.substring(0,4);var t=z.substring(5,7);var v=z.substring(8,10);var B=c.replace("dd",v).replace("mm",t).replace("yyyy",q);w+="<li><span>"+B+"</span><a href='"+p+"'>"+C+"</a></li>"}j.innerHTML+=w;k+=x;if(k<u){i(k+1)}else{d.parentNode.removeChild(d)}};i(1)})("dd/mm/yyyy","Loading......");</script>
     </body>
 </html>
